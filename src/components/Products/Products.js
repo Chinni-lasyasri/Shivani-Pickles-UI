@@ -1,0 +1,138 @@
+import React, { useState } from 'react';
+import ProductCard from '../ProductCard/ProductCard';
+import './Products.css';
+
+const ALL_PRODUCTS = [
+  {
+    id: 1,
+    name: 'Classic Dill Cucumber Pickle',
+    category: 'Cucumber',
+    description: 'Crisp garden cucumbers brined low-and-slow with fresh dill, garlic cloves and whole black peppercorns.',
+    price: 249,
+    oldPrice: 299,
+    image: '/product1.png',
+    badge: 'bestseller',
+    rating: 5,
+    reviews: 412,
+    tags: ['cucumber', 'mild'],
+  },
+  {
+    id: 2,
+    name: 'Spicy Mango Achaar',
+    category: 'Mango',
+    description: 'Raw Alphonso mangoes slow-cured in mustard oil with fenugreek, turmeric and a fiery red-chili masala.',
+    price: 299,
+    oldPrice: 349,
+    image: '/product2.png',
+    badge: 'hot',
+    rating: 5,
+    reviews: 287,
+    tags: ['mango', 'spicy'],
+  },
+  {
+    id: 3,
+    name: 'Garlic Chili Fire Pickle',
+    category: 'Chili',
+    description: 'Whole red Jwala chilies packed with plump garlic in a rich aromatic oil — not for the faint-hearted.',
+    price: 279,
+    oldPrice: null,
+    image: '/product3.png',
+    badge: 'new',
+    rating: 4,
+    reviews: 98,
+    tags: ['chili', 'spicy'],
+  },
+  {
+    id: 4,
+    name: 'Lemon Ginger Zest Pickle',
+    category: 'Lemon',
+    description: 'Sun-dried lemon slices mingled with julienned ginger in a tangy brine — brightens any meal.',
+    price: 219,
+    oldPrice: 259,
+    image: '/product1.png',
+    badge: null,
+    rating: 4,
+    reviews: 175,
+    tags: ['lemon', 'mild'],
+  },
+  {
+    id: 5,
+    name: 'Mixed Vegetable Achaar',
+    category: 'Mixed',
+    description: 'A medley of carrot, cauliflower, turnip and green chili in a punchy mustard-seed oil masala.',
+    price: 259,
+    oldPrice: 319,
+    image: '/product2.png',
+    badge: 'bestseller',
+    rating: 5,
+    reviews: 321,
+    tags: ['mixed', 'mild'],
+  },
+  {
+    id: 6,
+    name: 'Raw Amla Gooseberry Pickle',
+    category: 'Amla',
+    description: 'Indian gooseberries in a vitamin-C rich spiced brine. Tart, tangy and incredibly good for you.',
+    price: 239,
+    oldPrice: null,
+    image: '/product3.png',
+    badge: 'new',
+    rating: 4,
+    reviews: 64,
+    tags: ['amla', 'mild'],
+  },
+];
+
+const FILTERS = ['All', 'Cucumber', 'Mango', 'Chili', 'Lemon', 'Mixed', 'Amla'];
+
+const Products = ({ onAddToCart }) => {
+  const [active, setActive] = useState('All');
+
+  const visible = active === 'All'
+    ? ALL_PRODUCTS
+    : ALL_PRODUCTS.filter(p => p.category === active);
+
+  return (
+    <section className="products-section" id="products">
+      <div className="section-header">
+        <span className="section-eyebrow">🥒 Our Collection</span>
+        <h2 className="section-title">
+          Handcrafted <span>Pickle</span> Perfection
+        </h2>
+        <p className="section-sub">
+          Every batch is small-batch brined, taste-tested and sealed for maximum
+          freshness — delivered straight to your door.
+        </p>
+      </div>
+
+      <div className="products-filter">
+        {FILTERS.map(f => (
+          <button
+            key={f}
+            id={`filter-${f.toLowerCase()}`}
+            className={`filter-btn ${active === f ? 'active' : ''}`}
+            onClick={() => setActive(f)}
+          >
+            {f}
+          </button>
+        ))}
+      </div>
+
+      <div className="products-grid">
+        {visible.map(product => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            onAddToCart={onAddToCart}
+          />
+        ))}
+      </div>
+
+      <div className="products-footer">
+        <button className="btn-load-more">View Full Catalogue</button>
+      </div>
+    </section>
+  );
+};
+
+export default Products;
