@@ -1,0 +1,116 @@
+.products-section {
+  padding: 7rem 5%;
+  background: var(--clr-bg);
+  position: relative;
+}
+
+.products-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--clr-primary), transparent);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--clr-primary);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--clr-white);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.section-title span {
+  color: var(--clr-primary-light);
+  font-style: italic;
+}
+
+.section-sub {
+  font-size: 1rem;
+  color: var(--clr-text-muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Filter Tabs */
+.products-filter {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.4rem;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--clr-border);
+  color: var(--clr-text-muted);
+  transition: all var(--transition);
+}
+
+.filter-btn:hover {
+  border-color: rgba(106,168,79,0.4);
+  color: var(--clr-primary-light);
+  background: rgba(106,168,79,0.08);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(106,168,79,.35);
+}
+
+/* Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+  gap: 1.75rem;
+  justify-content: center;
+}
+
+.products-footer {
+  text-align: center;
+  margin-top: 3.5rem;
+}
+
+.btn-load-more {
+  padding: 0.85rem 2.5rem;
+  background: transparent;
+  border: 2px solid var(--clr-primary);
+  color: var(--clr-primary-light);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  letter-spacing: 1px;
+  transition: all var(--transition);
+}
+
+.btn-load-more:hover {
+  background: var(--clr-primary);
+  color: #fff;
+  box-shadow: 0 8px 25px rgba(106,168,79,.4);
+  transform: translateY(-2px);
+}

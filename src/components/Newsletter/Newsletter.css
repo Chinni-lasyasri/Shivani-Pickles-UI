@@ -1,0 +1,112 @@
+.newsletter-section {
+  padding: 6rem 5%;
+  background: var(--clr-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(106,168,79,0.08), transparent);
+  pointer-events: none;
+}
+
+.newsletter-card {
+  position: relative;
+  max-width: 720px;
+  width: 100%;
+  background: var(--clr-bg-card);
+  border: 1px solid rgba(106,168,79,0.25);
+  border-radius: var(--radius-xl);
+  padding: 4rem 3.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-card), 0 0 80px rgba(106,168,79,0.08);
+}
+
+.newsletter-card__icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.25rem;
+  display: block;
+  animation: bounce 2.5s ease infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.newsletter-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--clr-white);
+  margin-bottom: 0.75rem;
+}
+
+.newsletter-card__sub {
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.newsletter-card__sub strong {
+  color: var(--clr-accent-light);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 0.85rem 1.25rem;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  color: var(--clr-text);
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.newsletter-input::placeholder {
+  color: var(--clr-text-dim);
+}
+
+.newsletter-input:focus {
+  border-color: var(--clr-primary);
+}
+
+.btn-subscribe {
+  padding: 0.85rem 1.75rem;
+  background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  transition: all var(--transition);
+  box-shadow: 0 4px 16px rgba(106,168,79,.3);
+}
+
+.btn-subscribe:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(106,168,79,.5);
+}
+
+.newsletter-card__note {
+  margin-top: 1rem;
+  font-size: 0.72rem;
+  color: var(--clr-text-dim);
+}
