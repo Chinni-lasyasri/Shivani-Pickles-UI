@@ -168,3 +168,8 @@
   box-shadow: 0 0 0 2px rgba(106,168,79,0.3);
   flex-shrink: 0;
 }
+
+/* ── Hide Navbar on mobile/tablet (SideNav handles navigation there) ── */
+@media (max-width: 991px) {
+  .navbar { display: none !important; }
+}

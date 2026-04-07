@@ -85,12 +85,26 @@ const ALL_PRODUCTS = [
 
 const FILTERS = ['All', 'Cucumber', 'Mango', 'Chili', 'Lemon', 'Mixed', 'Amla'];
 
-const Products = ({ onAddToCart }) => {
-  const [active, setActive] = useState('All');
+const INITIAL_COUNT = 3;
 
-  const visible = active === 'All'
+const Products = ({ onAddToCart, onWishlist, wishlist }) => {
+  const [active, setActive]   = useState('All');
+  const [showAll, setShowAll] = useState(false);
+
+  const filtered = active === 'All'
     ? ALL_PRODUCTS
     : ALL_PRODUCTS.filter(p => p.category === active);
+
+  const visible = showAll ? filtered : filtered.slice(0, INITIAL_COUNT);
+
+  const handleToggle = () => {
+    if (showAll) {
+      setShowAll(false);
+      document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setShowAll(true);
+    }
+  };
 
   return (
     <section className="products-section" id="products">
@@ -111,7 +125,7 @@ const Products = ({ onAddToCart }) => {
             key={f}
             id={`filter-${f.toLowerCase()}`}
             className={`filter-btn ${active === f ? 'active' : ''}`}
-            onClick={() => setActive(f)}
+            onClick={() => { setActive(f); setShowAll(false); }}
           >
             {f}
           </button>
@@ -119,17 +133,32 @@ const Products = ({ onAddToCart }) => {
       </div>
 
       <div className="products-grid">
-        {visible.map(product => (
+        {/* {visible.map(product => (
           <ProductCard
             key={product.id}
             product={product}
             onAddToCart={onAddToCart}
           />
+        ))} */}
+
+        {visible.map(product => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            onAddToCart={onAddToCart}
+            onWishlist={onWishlist} // <--- Pass it to the card
+            // Check if this specific product's ID is in the wishlist array
+            isWishlisted={wishlist.some(item => item.id === product.id)} 
+          />
         ))}
       </div>
 
       <div className="products-footer">
-        <button className="btn-load-more">View Full Catalogue</button>
+        {filtered.length > INITIAL_COUNT && (
+          <button className="btn-load-more" onClick={handleToggle}>
+            {showAll ? 'Show Less ↑' : `View Full Catalogue (${filtered.length - INITIAL_COUNT} more)`}
+          </button>
+        )}
       </div>
     </section>
   );

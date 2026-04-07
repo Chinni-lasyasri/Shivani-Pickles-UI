@@ -17,10 +17,10 @@ const Newsletter = () => {
     <section className="newsletter-section" id="contact">
       <div className="newsletter-card">
         <span className="newsletter-card__icon">🎁</span>
-        <h2 className="newsletter-card__title">Get 20% Off Your First Order</h2>
+        <h2 className="newsletter-card__title">Get 10% Off Your First Order</h2>
         <p className="newsletter-card__sub">
           Subscribe to the Shivani Pickles journal for exclusive recipes, new launches,
-          and a <strong>20% welcome discount</strong> — straight to your inbox.
+          and a <strong>10% welcome discount</strong> — straight to your inbox.
         </p>
 
         {submitted ? (
