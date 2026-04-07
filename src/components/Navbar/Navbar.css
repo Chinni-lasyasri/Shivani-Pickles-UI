@@ -19,11 +19,26 @@
   background: rgba(13, 26, 15, 0.95);
   box-shadow: 0 4px 30px rgba(0,0,0,.4);
 }
-.navbar__logo {
+/* .navbar__logo {
   display: flex;
   align-items: center;
   gap: 10px;
+} */
+
+.navbar__logo {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Keeps your original text colors */
 }
+
+.navbar__logo:active, 
+.navbar__logo:visited {
+  color: inherit;
+}
+
 .navbar__logo-img {
   height: 44px;
   width: auto;
