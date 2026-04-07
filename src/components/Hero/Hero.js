@@ -12,7 +12,7 @@ const Hero = ({ onShopNow }) => {
 
       <div className="hero__content">
         <div className="hero__badge">
-          <span>🌿</span> Hand-Crafted Since 1998
+          <span>🌿</span> Hand-Crafted
         </div>
         <h1 className="hero__title">
           The Art of <span>Perfectly</span><br />Preserved Flavour

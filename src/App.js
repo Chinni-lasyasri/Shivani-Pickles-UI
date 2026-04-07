@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -12,17 +12,27 @@ import Toast from './components/Toast/Toast';
 import CartDrawer from './components/CartDrawer/CartDrawer';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import WishlistDrawer from './components/WishlistDrawer/WishlistDrawer';
 
-function HomePage({ onAddToCart, cartItems, toast, onDismissToast, cartOpen, onCartOpen, onCartClose, onIncrease, onDecrease, onRemove }) {
+function HomePage({ onAddToCart, cartItems, wishlist = [], onToggleWishlist, onWishlistOpen, wishlistOpen, onWishlistClose, toast, onDismissToast, cartOpen, onCartOpen, onCartClose, onIncrease, onDecrease, onRemove }) {
   const scrollToProducts = () => {
     document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
   };
   return (
     <div className="app">
-      <Navbar cartCount={cartItems.length} onCartOpen={onCartOpen} />
+      <Navbar 
+        cartCount={cartItems.length} 
+        wishlistCount={wishlist.length}
+        onCartOpen={onCartOpen} 
+        onWishlistOpen={onWishlistOpen}
+      />
       <SideNav cartCount={cartItems.length} onCartOpen={onCartOpen} />
       <Hero onShopNow={scrollToProducts} />
-      <Products onAddToCart={onAddToCart} />
+      <Products 
+        onAddToCart={onAddToCart} 
+        onWishlist={onToggleWishlist}
+        wishlist={wishlist}  
+      />
       <Features />
       <Newsletter />
       <Footer />
@@ -35,14 +45,23 @@ function HomePage({ onAddToCart, cartItems, toast, onDismissToast, cartOpen, onC
         onDecrease={onDecrease}
         onRemove={onRemove}
       />
+      <WishlistDrawer 
+        open={wishlistOpen}
+        onClose={onWishlistClose}
+        items={wishlist}
+        onRemove={(id) => onToggleWishlist({id})} // Simple way to reuse toggle for removal
+        onMoveToCart={(item) => onAddToCart(item)}
+      />
     </div>
   );
 }
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
   const [cartOpen, setCartOpen]   = useState(false);
   const [toast, setToast]         = useState(null);
+  const [wishlistOpen, setWishlistOpen] = useState(false);
 
   const handleAddToCart = useCallback((product) => {
     setCartItems(prev => [...prev, product]);
@@ -77,6 +96,26 @@ function App() {
     setToast(null);
   }, []);
 
+  // Toggle logic: If it's in the wishlist, remove it. If not, add it.
+  const handleToggleWishlist = useCallback((product) => {
+    setWishlist(prev => {
+      const exists = prev.find(item => item.id === product.id);
+      if (exists) return prev.filter(item => item.id !== product.id);
+      return [...prev, product];
+    });
+  }, []);
+
+  // Save wishlist to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('shivani_wishlist', JSON.stringify(wishlist));
+  }, [wishlist]);
+  
+  // Load wishlist on initial start
+  useEffect(() => {
+    const saved = localStorage.getItem('shivani_wishlist');
+    if (saved) setWishlist(JSON.parse(saved));
+  }, []);
+
   return (
     <Router>
       <Routes>
@@ -85,7 +124,12 @@ function App() {
           element={
             <HomePage
               cartItems={cartItems}
+              wishlist={wishlist}
               onAddToCart={handleAddToCart}
+              onToggleWishlist={handleToggleWishlist}
+              wishlistOpen={wishlistOpen}
+              onWishlistOpen={() => setWishlistOpen(true)}
+              onWishlistClose={() => setWishlistOpen(false)}
               toast={toast}
               onDismissToast={handleDismissToast}
               cartOpen={cartOpen}

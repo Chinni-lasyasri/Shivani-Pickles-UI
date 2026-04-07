@@ -87,7 +87,7 @@ const FILTERS = ['All', 'Cucumber', 'Mango', 'Chili', 'Lemon', 'Mixed', 'Amla'];
 
 const INITIAL_COUNT = 3;
 
-const Products = ({ onAddToCart }) => {
+const Products = ({ onAddToCart, onWishlist, wishlist }) => {
   const [active, setActive]   = useState('All');
   const [showAll, setShowAll] = useState(false);
 
@@ -133,11 +133,22 @@ const Products = ({ onAddToCart }) => {
       </div>
 
       <div className="products-grid">
+        {/* {visible.map(product => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            onAddToCart={onAddToCart}
+          />
+        ))} */}
+
         {visible.map(product => (
           <ProductCard
             key={product.id}
             product={product}
             onAddToCart={onAddToCart}
+            onWishlist={onWishlist} // <--- Pass it to the card
+            // Check if this specific product's ID is in the wishlist array
+            isWishlisted={wishlist.some(item => item.id === product.id)} 
           />
         ))}
       </div>
