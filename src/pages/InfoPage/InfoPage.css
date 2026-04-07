@@ -1,0 +1,79 @@
+/* ══════════════════════════════════════
+   InfoPage — Shivani Pickles Theme
+   ══════════════════════════════════════ */
+
+.info-page {
+  min-height: 80vh;
+  padding: 120px 2rem 80px; /* Extra top padding to clear the fixed Navbar */
+  max-width: 900px;
+  margin: 0 auto;
+  color: #f5e6c8;
+}
+
+.info-page__header {
+  text-align: center;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(200, 169, 110, 0.2);
+  padding-bottom: 2rem;
+}
+
+.info-page__icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px rgba(200, 121, 26, 0.3));
+}
+
+.info-page__header h1 {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #f5e6c8;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.info-page__content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #d4c3a1;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 3rem;
+  border-radius: 24px;
+  border: 1px solid rgba(200, 169, 110, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.info-page__content p {
+  margin-bottom: 1.5rem;
+}
+
+/* ── Mobile Optimization ── */
+@media (max-width: 768px) {
+  .info-page {
+    padding: 100px 1.5rem 60px;
+  }
+
+  .info-page__content {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .info-page__header h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* ── Back Button (If you want to add one) ── */
+.info-page__back {
+  display: inline-block;
+  margin-top: 2rem;
+  color: #c8791a;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.info-page__back:hover {
+  transform: translateX(-5px);
+}

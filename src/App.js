@@ -13,6 +13,7 @@ import CartDrawer from './components/CartDrawer/CartDrawer';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import WishlistDrawer from './components/WishlistDrawer/WishlistDrawer';
+import InfoPage from './pages/InfoPage/InfoPage';
 
 function HomePage({ onAddToCart, cartItems, wishlist = [], onToggleWishlist, onWishlistOpen, wishlistOpen, onWishlistClose, toast, onDismissToast, cartOpen, onCartOpen, onCartClose, onIncrease, onDecrease, onRemove }) {
   const scrollToProducts = () => {
@@ -148,6 +149,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/:slug" element={<InfoPage />} />
         <Route path="*" element={<Login />} />
       </Routes>
     </Router>
