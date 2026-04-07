@@ -10,7 +10,7 @@ const NAV_ITEMS = [
   { label: 'Contact', href: '#contact',  icon: '📞' },
 ];
 
-const SideNav = ({ cartCount = 0, onCartOpen }) => {
+const SideNav = ({ cartCount = 0, onCartOpen, wishlistCount = 0, onWishlistOpen }) => {
   const [open, setOpen]   = useState(false);
   const [user, setUser]   = useState(null);
   const [active, setActive] = useState('home');
@@ -85,6 +85,11 @@ const SideNav = ({ cartCount = 0, onCartOpen }) => {
         </div>
 
         <div className="sidenav-topbar__actions">
+
+          <div className="sidenav-cart" onClick={onWishlistOpen} style={{marginRight: '12px'}}>
+            ❤️ {wishlistCount > 0 && <span className="sidenav-cart__badge">{wishlistCount}</span>}
+          </div>
+
           <div className="sidenav-cart" title="Cart" onClick={onCartOpen}>
             🛒
             {cartCount > 0 && <span className="sidenav-cart__badge">{cartCount}</span>}

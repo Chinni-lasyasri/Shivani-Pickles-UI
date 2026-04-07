@@ -173,3 +173,20 @@
 @media (max-width: 991px) {
   .navbar { display: none !important; }
 }
+
+
+@media (max-width: 768px) {
+  /* Hide the main navbar links on mobile */
+  .navbar__links {
+    display: none;
+  }
+
+  /* Adjust logo size for mobile */
+  .navbar__logo-text {
+    font-size: 1rem;
+  }
+  
+  .navbar__logo-sub {
+    display: none; /* Hide 'Artisan Pickles' to save space */
+  }
+}

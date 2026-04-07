@@ -26,7 +26,12 @@ function HomePage({ onAddToCart, cartItems, wishlist = [], onToggleWishlist, onW
         onCartOpen={onCartOpen} 
         onWishlistOpen={onWishlistOpen}
       />
-      <SideNav cartCount={cartItems.length} onCartOpen={onCartOpen} />
+      <SideNav 
+        cartCount={cartItems.length} 
+        onCartOpen={onCartOpen}
+        wishlistCount={wishlist.length} 
+        onWishlistOpen={onWishlistOpen} 
+      />
       <Hero onShopNow={scrollToProducts} />
       <Products 
         onAddToCart={onAddToCart} 
@@ -109,7 +114,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem('shivani_wishlist', JSON.stringify(wishlist));
   }, [wishlist]);
-  
+
   // Load wishlist on initial start
   useEffect(() => {
     const saved = localStorage.getItem('shivani_wishlist');

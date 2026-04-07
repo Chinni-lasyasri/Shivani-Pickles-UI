@@ -151,3 +151,30 @@
 .footer__badge span {
   color: #e74c3c;
 }
+
+
+@media (max-width: 768px) {
+  .footer__top {
+    grid-template-columns: 1fr; /* Stack columns vertically */
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .footer__brand-logo {
+    justify-content: center;
+  }
+
+  .footer__social {
+    justify-content: center;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .footer__bottom-links {
+    justify-content: center;
+  }
+}
