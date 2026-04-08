@@ -55,7 +55,7 @@ function HomePage({ onAddToCart, cartItems, wishlist = [], onToggleWishlist, onW
         open={wishlistOpen}
         onClose={onWishlistClose}
         items={wishlist}
-        onRemove={(id) => onToggleWishlist({id})} // Simple way to reuse toggle for removal
+        onRemove={(id) => onToggleWishlist({id})}
         onMoveToCart={(item) => onAddToCart(item)}
       />
     </div>

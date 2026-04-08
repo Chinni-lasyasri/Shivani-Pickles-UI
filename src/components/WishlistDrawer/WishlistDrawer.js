@@ -1,5 +1,5 @@
 import React from 'react';
-import './WishlistDrawer.css'; // Create this file based on CartDrawer.css
+import './WishlistDrawer.css';
 
 const WishlistDrawer = ({ open, onClose, items, onMoveToCart, onRemove }) => {
   return (
@@ -22,37 +22,18 @@ const WishlistDrawer = ({ open, onClose, items, onMoveToCart, onRemove }) => {
             </div>
           ) : (
             <ul className="cart-drawer__list">
-              {/* {items.map(item => (
-                <li key={item.id} className="cart-item">
-                  <div className="cart-item__img-wrap">
-                    <img src={item.image} alt={item.name} className="cart-item__img" />
-                  </div>
-                  <div className="cart-item__info">
-                    <p className="cart-item__name">{item.name}</p>
-                    <p className="cart-item__price">₹{item.price}</p>
-                    <button 
-                      className="wishlist-add-to-cart"
-                      onClick={() => { onMoveToCart(item); onRemove(item.id); }}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
-                  <button className="cart-item__remove" onClick={() => onRemove(item.id)}>🗑</button>
-                </li>
-              ))} */}
               
               {items.map(item => (
                   <li key={item.id} className="cart-item">
                     <div className="cart-item__img-wrap">
-                      <img src={item.image} alt={item.name}                 className="cart-item__img" />
+                      <img src={item.image} alt={item.name} className="cart-item__img" />
                     </div>
                             
                     <div className="cart-item__info">
                       <p className="cart-item__name">{item.name}</p>
                       <p className="cart-item__price">₹{item.price}</p>
                     </div>
-                            
-                    {/* Move controls to the right side */}
+                    
                     <div className="cart-item__controls">
                       <button 
                         className="wishlist-add-to-cart"

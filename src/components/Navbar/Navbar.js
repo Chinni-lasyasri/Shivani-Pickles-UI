@@ -29,14 +29,12 @@ const Navbar = ({ cartCount = 0, onCartOpen, wishlistCount = 0, onWishlistOpen }
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      {/* <div className="navbar__logo"> */}
       <Link to="/" className="navbar__logo" style={{ textDecoration: 'none' }}>
         <img src="/shivani_pickles_logo.png" alt="Shivani Pickles Logo" className="navbar__logo-img" />
         <div>
           <span className="navbar__logo-text">Shivani Pickles</span>
           <span className="navbar__logo-sub">Artisan Pickles</span>
         </div>
-      {/* </div> */}
       </Link>
 
       <ul className="navbar__links">

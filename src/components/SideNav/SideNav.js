@@ -79,11 +79,9 @@ const SideNav = ({ cartCount = 0, onCartOpen, wishlistCount = 0, onWishlistOpen 
           <span /><span /><span />
         </button>
 
-        {/* <div className="sidenav-topbar__brand"> */}
         <Link to="/" className="sidenav-topbar__brand" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
           <img src="/shivani_pickles_logo.png" alt="Shivani Pickles" className="sidenav-topbar__logo" />
           <span className="sidenav-topbar__name">Shivani Pickles</span>
-        {/* </div> */}
         </Link>
 
         <div className="sidenav-topbar__actions">

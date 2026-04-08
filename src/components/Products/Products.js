@@ -133,21 +133,13 @@ const Products = ({ onAddToCart, onWishlist, wishlist }) => {
       </div>
 
       <div className="products-grid">
-        {/* {visible.map(product => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAddToCart={onAddToCart}
-          />
-        ))} */}
 
         {visible.map(product => (
           <ProductCard
             key={product.id}
             product={product}
             onAddToCart={onAddToCart}
-            onWishlist={onWishlist} // <--- Pass it to the card
-            // Check if this specific product's ID is in the wishlist array
+            onWishlist={onWishlist}
             isWishlisted={wishlist.some(item => item.id === product.id)} 
           />
         ))}
