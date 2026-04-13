@@ -12,7 +12,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(106,168,79,0.08), transparent);
+  background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(26,85,104,0.08), transparent);
   pointer-events: none;
 }
 
@@ -21,11 +21,11 @@
   max-width: 720px;
   width: 100%;
   background: var(--clr-bg-card);
-  border: 1px solid rgba(106,168,79,0.25);
+  border: 1px solid rgba(26,85,104,0.25);
   border-radius: var(--radius-xl);
   padding: 4rem 3.5rem;
   text-align: center;
-  box-shadow: var(--shadow-card), 0 0 80px rgba(106,168,79,0.08);
+  box-shadow: var(--shadow-card), 0 0 80px rgba(26,85,104,0.08);
 }
 
 .newsletter-card__icon {

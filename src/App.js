@@ -15,7 +15,7 @@ import Register from './pages/Register/Register';
 import WishlistDrawer from './components/WishlistDrawer/WishlistDrawer';
 import InfoPage from './pages/InfoPage/InfoPage';
 
-function HomePage({ onAddToCart, cartItems, wishlist = [], onToggleWishlist, onWishlistOpen, wishlistOpen, onWishlistClose, toast, onDismissToast, cartOpen, onCartOpen, onCartClose, onIncrease, onDecrease, onRemove }) {
+function HomePage({ onAddToCart, cartItems, wishlist = [], onToggleWishlist, onWishlistOpen, wishlistOpen, onWishlistClose, toast, onDismissToast, cartOpen, onCartOpen, onCartClose, onIncrease, onDecrease, onRemove, user, onLogout }) {
   const scrollToProducts = () => {
     document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -31,13 +31,16 @@ function HomePage({ onAddToCart, cartItems, wishlist = [], onToggleWishlist, onW
         cartCount={cartItems.length} 
         onCartOpen={onCartOpen}
         wishlistCount={wishlist.length} 
-        onWishlistOpen={onWishlistOpen} 
+        onWishlistOpen={onWishlistOpen}
+        user={user}
+        onLogout={onLogout}
       />
       <Hero onShopNow={scrollToProducts} />
       <Products 
         onAddToCart={onAddToCart} 
         onWishlist={onToggleWishlist}
-        wishlist={wishlist}  
+        wishlist={wishlist}
+        user={user}
       />
       <Features />
       <Newsletter />
@@ -68,6 +71,15 @@ function App() {
   const [cartOpen, setCartOpen]   = useState(false);
   const [toast, setToast]         = useState(null);
   const [wishlistOpen, setWishlistOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  // Load user on initial start
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('user');
+      if (stored) setUser(JSON.parse(stored));
+    } catch {}
+  }, []);
 
   const handleAddToCart = useCallback((product) => {
     setCartItems(prev => [...prev, product]);
@@ -101,6 +113,24 @@ function App() {
   const handleDismissToast = useCallback(() => {
     setToast(null);
   }, []);
+
+  const clearAllCookies = useCallback(() => {
+    const cookies = document.cookie.split(";");
+    for (let cookie of cookies) {
+      const eqPos = cookie.indexOf("=");
+      const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    }
+  }, []);
+
+  const handleLogout = useCallback(() => {
+    localStorage.clear();
+    sessionStorage.clear();
+    clearAllCookies();
+    setUser(null);
+    setCartItems([]);
+    setWishlist([]);
+  }, [clearAllCookies]);
 
   // Toggle logic: If it's in the wishlist, remove it. If not, add it.
   const handleToggleWishlist = useCallback((product) => {
@@ -144,6 +174,8 @@ function App() {
               onIncrease={handleIncrease}
               onDecrease={handleDecrease}
               onRemove={handleRemove}
+              user={user}
+              onLogout={handleLogout}
             />
           }
         />

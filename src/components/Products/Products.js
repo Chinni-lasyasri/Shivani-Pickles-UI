@@ -81,15 +81,29 @@ const ALL_PRODUCTS = [
     reviews: 64,
     tags: ['amla', 'mild'],
   },
+  {
+    id: 7,
+    name: 'Raw ginger Pickle',
+    category: 'ginger',
+    description: 'Indian ginger in a vitamin-C rich spiced brine. Tart, tangy and incredibly good for you.',
+    price: 350,
+    oldPrice: 400,
+    image: '/product3.png',
+    badge: 'new',
+    rating: 4.5,
+    reviews: 64,
+    tags: ['ginger', 'mild'],
+  },
 ];
 
 const FILTERS = ['All', 'Cucumber', 'Mango', 'Chili', 'Lemon', 'Mixed', 'Amla'];
 
 const INITIAL_COUNT = 3;
 
-const Products = ({ onAddToCart, onWishlist, wishlist }) => {
+const Products = ({ onAddToCart, onWishlist, wishlist, user }) => {
   const [active, setActive]   = useState('All');
   const [showAll, setShowAll] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
 
   const filtered = active === 'All'
     ? ALL_PRODUCTS
@@ -117,6 +131,12 @@ const Products = ({ onAddToCart, onWishlist, wishlist }) => {
           Every batch is small-batch brined, taste-tested and sealed for maximum
           freshness — delivered straight to your door.
         </p>
+        {user && user.role === 'admin' && (
+          console.log('Admin user detected:', user),
+          <button className="btn-add-product" onClick={() => setShowAddForm(true)}>
+            Add New Product
+          </button>
+        )}
       </div>
 
       <div className="products-filter">
@@ -144,6 +164,31 @@ const Products = ({ onAddToCart, onWishlist, wishlist }) => {
           />
         ))}
       </div>
+
+      {showAddForm && user && user.role === 'admin' && (
+        <div className="add-product-form">
+          <h3>Add New Product</h3>
+          <form onSubmit={(e) => { e.preventDefault(); alert('Product added! (Frontend only)'); setShowAddForm(false); }}>
+            <input type="text" placeholder="Product Name" required />
+            <input type="text" placeholder="Category" required />
+            <textarea placeholder="Description" required></textarea>
+            <input type="number" placeholder="Price" required />
+            <input type="number" placeholder="Old Price (optional)" />
+            <input type="text" placeholder="Image URL" required />
+            <select>
+              <option value="">Badge (optional)</option>
+              <option value="bestseller">Bestseller</option>
+              <option value="hot">Hot</option>
+              <option value="new">New</option>
+            </select>
+            <input type="number" placeholder="Rating" min="1" max="5" required />
+            <input type="number" placeholder="Reviews"/>
+            <input type="text" placeholder="Tags (comma separated)" />
+            <button type="submit">Add Product</button>
+            <button type="button" onClick={() => setShowAddForm(false)}>Cancel</button>
+          </form>
+        </div>
+      )}
 
       <div className="products-footer">
         {filtered.length > INITIAL_COUNT && (

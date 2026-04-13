@@ -2,18 +2,18 @@
 
 /* ─── Design Tokens ─────────────────────────────────────────── */
 :root {
-  --clr-bg: #0d1a0f;
-  --clr-bg-2: #111f14;
-  --clr-bg-card: #162119;
-  --clr-border: rgba(106, 168, 79, 0.15);
-  --clr-primary: #6aa84f;
-  --clr-primary-light: #8dc96f;
-  --clr-primary-dark: #4a7a33;
+  --clr-bg: #0d2935;
+  --clr-bg-2: #0f3340;
+  --clr-bg-card: #113c48;
+  --clr-border: rgba(26, 85, 104, 0.25);
+  --clr-primary: #1a5568;
+  --clr-primary-light: #2d7c94;
+  --clr-primary-dark: #0f3c48;
   --clr-accent: #d4a017;
   --clr-accent-light: #f0c040;
-  --clr-text: #e8f0e3;
-  --clr-text-muted: #8fa888;
-  --clr-text-dim: #506045;
+  --clr-text: #f5f5f5;
+  --clr-text-muted: #b8c9d1;
+  --clr-text-dim: #7a8c96;
   --clr-white: #ffffff;
   --clr-danger: #c0392b;
   --radius-sm: 8px;
@@ -21,7 +21,7 @@
   --radius-lg: 20px;
   --radius-xl: 32px;
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 40px rgba(106, 168, 79, 0.15);
+  --shadow-glow: 0 0 40px rgba(26, 85, 104, 0.15);
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

@@ -10,7 +10,7 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(106,168,79,0.06), transparent),
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(26,85,104,0.06), transparent),
     radial-gradient(ellipse 40% 60% at 10% 80%, rgba(212,160,23,0.05), transparent);
   pointer-events: none;
 }
@@ -46,7 +46,7 @@
 
 .feature-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(106,168,79,0.35);
+  border-color: rgba(26,85,104,0.35);
   box-shadow: var(--shadow-card);
 }
 
@@ -95,7 +95,7 @@
 }
 
 .testimonial-card:hover {
-  border-color: rgba(106,168,79,0.35);
+  border-color: rgba(26,85,104,0.35);
   box-shadow: var(--shadow-card);
   transform: translateY(-4px);
 }

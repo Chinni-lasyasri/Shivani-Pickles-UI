@@ -10,20 +10,11 @@ const NAV_ITEMS = [
   { label: 'Contact', href: '#contact',  icon: '📞' },
 ];
 
-const SideNav = ({ cartCount = 0, onCartOpen, wishlistCount = 0, onWishlistOpen }) => {
+const SideNav = ({ cartCount = 0, onCartOpen, wishlistCount = 0, onWishlistOpen, user, onLogout }) => {
   const [open, setOpen]   = useState(false);
-  const [user, setUser]   = useState(null);
   const [active, setActive] = useState('home');
   const navigate = useNavigate();
   const location = useLocation();
-
-  /* ── load user ── */
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('user');
-      if (stored) setUser(JSON.parse(stored));
-    } catch {}
-  }, []);
 
   /* ── close on route change ── */
   useEffect(() => { setOpen(false); }, [location]);
@@ -51,9 +42,7 @@ const SideNav = ({ cartCount = 0, onCartOpen, wishlistCount = 0, onWishlistOpen 
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setUser(null);
+    onLogout();
     setOpen(false);
     navigate('/login');
   };
@@ -163,7 +152,7 @@ const SideNav = ({ cartCount = 0, onCartOpen, wishlistCount = 0, onWishlistOpen 
                 </div>
                 <div>
                   <p className="sidenav__user-name">{user.firstName} {user.lastName}</p>
-                  <p className="sidenav__user-role">Member</p>
+                  <p className="sidenav__user-role">{user.role || 'Member'}</p>
                 </div>
               </div>
               <button className="sidenav__logout-btn" onClick={handleLogout}>
