@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CartDrawer.css';
+import CheckoutModal from '../CheckoutModal/CheckoutModal';
 
-const CartDrawer = ({ open, onClose, items, onIncrease, onDecrease, onRemove }) => {
+const CartDrawer = ({ open, onClose, items, onIncrease, onDecrease, onRemove, onClearCart }) => {
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   /* lock body scroll when open */
   useEffect(() => {
@@ -19,6 +21,12 @@ const CartDrawer = ({ open, onClose, items, onIncrease, onDecrease, onRemove }) 
 
   const total = grouped.reduce((sum, i) => sum + i.price * i.qty, 0);
   const count = items.length;
+
+  const handleOrderPlaced = () => {
+    setCheckoutOpen(false);
+    onClose();
+    onClearCart?.();
+  };
 
   return (
     <>
@@ -116,7 +124,10 @@ const CartDrawer = ({ open, onClose, items, onIncrease, onDecrease, onRemove }) 
               </div>
             </div>
 
-            <button className="cart-drawer__checkout-btn">
+            <button
+              className="cart-drawer__checkout-btn"
+              onClick={() => setCheckoutOpen(true)}
+            >
               Proceed to Checkout →
             </button>
             <button className="cart-drawer__continue-btn" onClick={onClose}>
@@ -125,8 +136,17 @@ const CartDrawer = ({ open, onClose, items, onIncrease, onDecrease, onRemove }) 
           </div>
         )}
       </aside>
+
+      {/* Checkout Modal */}
+      <CheckoutModal
+        open={checkoutOpen}
+        onClose={() => setCheckoutOpen(false)}
+        cartItems={items}
+        onOrderPlaced={handleOrderPlaced}
+      />
     </>
   );
 };
 
 export default CartDrawer;
+

@@ -207,6 +207,27 @@
   transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
 
+.sidenav__item--link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidenav__item--link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidenav__item--admin {
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  font-weight: 600;
+}
+
+.sidenav__item--admin:hover {
+  background: rgba(102, 126, 234, 0.2);
+  color: #5a67d8;
+}
+
 .sidenav__item:hover {
   background: rgba(26, 85, 104, 0.1);
   color: var(--clr-primary-light);

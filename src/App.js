@@ -12,10 +12,12 @@ import Toast from './components/Toast/Toast';
 import CartDrawer from './components/CartDrawer/CartDrawer';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import Admin from './pages/Admin/Admin';
+import Orders from './pages/Orders/Orders';
 import WishlistDrawer from './components/WishlistDrawer/WishlistDrawer';
 import InfoPage from './pages/InfoPage/InfoPage';
 
-function HomePage({ onAddToCart, cartItems, wishlist = [], onToggleWishlist, onWishlistOpen, wishlistOpen, onWishlistClose, toast, onDismissToast, cartOpen, onCartOpen, onCartClose, onIncrease, onDecrease, onRemove, user, onLogout }) {
+function HomePage({ onAddToCart, cartItems, wishlist = [], onToggleWishlist, onWishlistOpen, wishlistOpen, onWishlistClose, toast, onDismissToast, cartOpen, onCartOpen, onCartClose, onIncrease, onDecrease, onRemove, onClearCart, user, onLogout }) {
   const scrollToProducts = () => {
     document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -53,6 +55,7 @@ function HomePage({ onAddToCart, cartItems, wishlist = [], onToggleWishlist, onW
         onIncrease={onIncrease}
         onDecrease={onDecrease}
         onRemove={onRemove}
+        onClearCart={onClearCart}
       />
       <WishlistDrawer 
         open={wishlistOpen}
@@ -108,6 +111,10 @@ function App() {
 
   const handleRemove = useCallback((id) => {
     setCartItems(prev => prev.filter(i => i.id !== id));
+  }, []);
+
+  const handleClearCart = useCallback(() => {
+    setCartItems([]);
   }, []);
 
   const handleDismissToast = useCallback(() => {
@@ -174,6 +181,7 @@ function App() {
               onIncrease={handleIncrease}
               onDecrease={handleDecrease}
               onRemove={handleRemove}
+              onClearCart={handleClearCart}
               user={user}
               onLogout={handleLogout}
             />
@@ -181,6 +189,8 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/orders" element={<Orders />} />
         <Route path="/:slug" element={<InfoPage />} />
         <Route path="*" element={<Login />} />
       </Routes>

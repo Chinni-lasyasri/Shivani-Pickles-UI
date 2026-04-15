@@ -146,6 +146,28 @@ const SideNav = ({ cartCount = 0, onCartOpen, wishlistCount = 0, onWishlistOpen,
 
           {user ? (
             <div className="sidenav__user-section">
+              {/* User Orders Link */}
+              <Link
+                to="/orders"
+                className="sidenav__item sidenav__item--link"
+                onClick={() => setOpen(false)}
+              >
+                <span className="sidenav__icon">📦</span>
+                <span className="sidenav__label">My Orders</span>
+              </Link>
+
+              {/* Admin Panel Link - Only for admins */}
+              {user.role === 'admin' && (
+                <Link
+                  to="/admin"
+                  className="sidenav__item sidenav__item--link sidenav__item--admin"
+                  onClick={() => setOpen(false)}
+                >
+                  <span className="sidenav__icon">⚙️</span>
+                  <span className="sidenav__label">Admin Panel</span>
+                </Link>
+              )}
+
               <div className="sidenav__user-info">
                 <div className="sidenav__avatar">
                   {(user.firstName?.[0] || '').toUpperCase()}

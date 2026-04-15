@@ -46,6 +46,19 @@ const Navbar = ({ cartCount = 0, onCartOpen, wishlistCount = 0, onWishlistOpen }
       </ul>
 
       <div className="navbar__actions">
+        {/* User-specific navigation for bigger screens */}
+        {user && (
+          <div className="navbar__user-nav">
+            <Link to="/orders" className="navbar__user-link" title="My Orders">
+              📦 Orders
+            </Link>
+            {user.role === 'admin' && (
+              <Link to="/admin" className="navbar__user-link navbar__user-link--admin" title="Admin Panel">
+                ⚙️ Admin
+              </Link>
+            )}
+          </div>
+        )}
 
         <div className="navbar__wishlist" onClick={onWishlistOpen} style={{ cursor: 'pointer', marginRight: '1rem' }}>
           ❤️ {wishlistCount > 0 && <span className="navbar__cart-badge">{wishlistCount}</span>}
